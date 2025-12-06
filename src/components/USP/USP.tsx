@@ -1,4 +1,4 @@
-import React from 'react'
+// Removed unused React import
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 type USPItem = {
@@ -33,7 +33,7 @@ const ITEMS: USPItem[] = [
   {
     id: 'scalable',
     title: 'Scalable Workforce',
-    text: '100+ trained linguists, annotators, and media specialists.',
+    text: 'Expert linguists, annotators, and specialists across multiple domains.',
     Icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
         <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -72,7 +72,11 @@ const ITEMS: USPItem[] = [
   },
 ]
 
+<<<<<<< HEAD
 export default function USP(): JSX.Element {
+=======
+export default function USP() {
+>>>>>>> fa6124d (new update)
   const headerRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
 
   function USPItem({ it, idx }: { it: typeof ITEMS[number]; idx: number }) {

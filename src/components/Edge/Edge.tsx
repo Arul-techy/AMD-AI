@@ -1,4 +1,4 @@
-import React from 'react'
+// Removed unused React import
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 type EdgeItem = {
@@ -78,7 +78,16 @@ const ITEMS: EdgeItem[] = [
   },
 ]
 
+<<<<<<< HEAD
 function EdgeComponent(): JSX.Element {
+=======
+<<<<<<< HEAD
+function EdgeComponent() {
+  const ref = useRef<HTMLLIElement | null>(null)
+  const [visible, setVisible] = useState<Record<string, boolean>>({})
+=======
+function EdgeComponent() {
+>>>>>>> fa6124d (new update)
   const headerRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
 
   function EdgeItem({ it }: { it: EdgeItem }) {

@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React from 'react'
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 import { FiTarget, FiAward, FiUsers, FiCloud } from 'react-icons/fi'
+=======
+import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+import { FiTarget, FiAward, FiUsers } from 'react-icons/fi'
+>>>>>>> fa6124d (new update)
 
 const MissionPoints = [
   'Deliver accurate and culturally relevant localization',
@@ -9,7 +14,11 @@ const MissionPoints = [
   'Create opportunities for young talent and freelancers worldwide',
 ]
 
+<<<<<<< HEAD
 export default function VisionMission(): JSX.Element {
+=======
+export default function VisionMission() {
+>>>>>>> fa6124d (new update)
   const visionRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
   const missionRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
 

@@ -1,4 +1,4 @@
-import React from 'react'
+// Removed unused React import
 import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 type Metric = {
@@ -47,7 +47,16 @@ const METRICS: Metric[] = [
   },
 ]
 
+<<<<<<< HEAD
 function ExperienceComponent(): JSX.Element {
+=======
+<<<<<<< HEAD
+function ExperienceComponent() {
+  const ref = useRef<HTMLLIElement | null>(null)
+  const [visible, setVisible] = useState<Record<string, boolean>>({})
+=======
+function ExperienceComponent() {
+>>>>>>> fa6124d (new update)
   const headerRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
 
   function MetricItem({ m }: { m: Metric }) {
