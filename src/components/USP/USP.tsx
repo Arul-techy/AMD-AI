@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
+import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 type USPItem = {
   id: string
@@ -72,58 +73,43 @@ const ITEMS: USPItem[] = [
 ]
 
 export default function USP(): JSX.Element {
-  const ref = useRef<HTMLElement | null>(null)
-  const [visible, setVisible] = useState<Record<string, boolean>>({})
+  const headerRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = (entry.target as HTMLElement).dataset.id
-          if (id && entry.isIntersecting) {
-            setVisible((v) => ({ ...v, [id]: true }))
-          }
-        })
-      },
-      { threshold: 0.12 }
+  function USPItem({ it, idx }: { it: typeof ITEMS[number]; idx: number }) {
+    const ref = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
+    return (
+      <li
+        ref={ref}
+        key={it.id}
+        data-id={it.id}
+        className={`relative bg-white rounded-2xl p-4 sm:p-6 shadow-sm overflow-hidden transform transition-all duration-600 will-change-transform opacity-0 translate-y-8`}
+        style={{ animationDelay: `${idx * 100}ms` }}
+      >
+        <div className="absolute left-0 top-0 h-full w-1 bg-transparent group-hover:bg-blue-secondary transition-colors duration-200" />
+
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 text-neutral-dark-text">{it.Icon}</div>
+          <div>
+            <h3 className="h4-style text-lg font-bold text-neutral-dark-text">{it.title}</h3>
+            <p className="text-body-xs mt-2 text-neutral-text-gray">{it.text}</p>
+          </div>
+        </div>
+
+        <style>{`@media (hover: hover) { li:hover { transform: translateY(-6px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); } }`}</style>
+      </li>
     )
-    const items = el.querySelectorAll('[data-id]')
-    items.forEach((i) => obs.observe(i))
-    return () => obs.disconnect()
-  }, [])
+  }
 
   return (
-    <section id="usp" ref={ref} className="py-8 md:py-20 bg-[#F7F7F7]">
+    <section id="usp" className="py-8 md:py-20 bg-neutral-light-gray">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-black">Why Choose AMD.AI</h2>
-          <p className="mt-2 text-gray-600">Our strengths that help businesses grow faster.</p>
+        <div ref={headerRef} className="text-center mb-8 opacity-0 translate-y-8 transition-all duration-600 ease-[cubic-bezier(0.22,0.9,0.3,1)]">
+          <h2 className="h2-style text-2xl md:text-3xl text-neutral-dark-text">Why Choose AMD.AI</h2>
+          <p className="text-body-sm mt-2 text-neutral-text-gray">Our strengths that help businesses grow faster.</p>
         </div>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {ITEMS.map((it, idx) => (
-            <li
-              key={it.id}
-              data-id={it.id}
-              className={`relative bg-white rounded-2xl p-4 sm:p-6 shadow-sm overflow-hidden transform transition-all duration-300 will-change-transform ${
-                visible[it.id] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              }`}
-              style={{ animationDelay: `${idx * 100}ms` }}
-            >
-              {/* Left accent bar */}
-              <div className="absolute left-0 top-0 h-full w-1 bg-transparent group-hover:bg-dynamic-bronze transition-colors duration-200" />
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 text-black/80">{it.Icon}</div>
-                <div>
-                  <h3 className="text-lg font-bold text-black">{it.title}</h3>
-                  <p className="mt-2 text-sm text-gray-700">{it.text}</p>
-                </div>
-              </div>
-
-              <style>{`@media (hover: hover) { li:hover { transform: translateY(-6px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); } }`}</style>
-            </li>
+            <USPItem it={it} idx={idx} key={it.id} />
           ))}
         </ul>
       </div>

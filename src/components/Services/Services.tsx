@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import FadeInSection from '../animations/FadeInSection'
+import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 import {
   FiGlobe,
   FiVideo,
@@ -81,29 +81,9 @@ const SERVICES: Service[] = [
 ]
 
 function ServicesComponent() {
-  const [visibleIds, setVisibleIds] = useState<Record<string, boolean>>({})
-  const containerRef = useRef<HTMLElement | null>(null)
   const [modalService, setModalService] = useState<Service | null>(null)
   const closeBtnRef = useRef<HTMLButtonElement | null>(null)
-
-  useEffect(() => {
-    const root = containerRef.current
-    if (!root) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = (entry.target as HTMLElement).dataset['id']
-          if (id && entry.isIntersecting) {
-            setVisibleIds((s) => ({ ...s, [id]: true }))
-          }
-        })
-      },
-      { threshold: 0.12 }
-    )
-    const cards = root.querySelectorAll('[data-id]')
-    cards.forEach((c) => observer.observe(c))
-    return () => observer.disconnect()
-  }, [])
+  const headerRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
 
   // Modal: handle ESC key and lock scroll
   useEffect(() => {
@@ -126,81 +106,39 @@ function ServicesComponent() {
   }, [modalService])
 
   return (
-    <section id="services" ref={containerRef} className="relative py-20 md:py-32 bg-elegant-porcelain">
+    <section id="services" className="relative py-20 md:py-32 bg-white">
       {/* Background gradient effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-elegant-navy/8 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-elegant-teal/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-primary/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-accent/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <FadeInSection className="mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-elegant-navy to-dynamic-bronze bg-clip-text text-transparent mb-4">
+        <div ref={headerRef as React.RefObject<HTMLDivElement>} className="mb-16 text-center opacity-0 translate-y-8 transition-all duration-600 cubic-bezier(0.22, 0.9, 0.3, 1)">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-tighter bg-gradient-to-r from-blue-primary to-blue-secondary bg-clip-text text-transparent mb-4">
             Our Services
           </h2>
-          <p className="text-lg text-elegant-navy max-w-2xl mx-auto">
+          <p className="font-body text-lg text-neutral-text-gray max-w-2xl mx-auto font-regular">
             Comprehensive solutions tailored to your business needs, powered by expertise and innovation.
           </p>
-        </FadeInSection>
+        </div>
 
         {/* Services Grid */}
-        <FadeInSection className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ul className="contents">
             {SERVICES.map((s, idx) => (
-              <li
-                key={s.id}
-                data-id={s.id}
-                className={`elegant-card group relative overflow-hidden transform transition-all duration-500 will-change-transform ${
-                  visibleIds[s.id]
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-8'
-                } ${idx % 2 === 0 ? 'bg-elegant-porcelain' : 'bg-dynamic-sand'}`}
-                style={{ transitionDelay: `${idx * 50}ms` }}
-              >
-                {/* Icon container */}
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-14 h-14 rounded-xl bg-dynamic-bronze/10 flex items-center justify-center text-dynamic-bronze shadow-elegant-sm group-hover:shadow-elegant-md transition-shadow">
-                      <s.Icon className="w-7 h-7" aria-hidden="true" />
-                    </div>
-                  </div>
-
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold text-elegant-navy group-hover:text-dynamic-bronze transition-colors">
-                      {s.title}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-sm text-elegant-navy leading-relaxed mb-6">
-                  {s.short}
-                </p>
-
-                {/* Learn More Button */}
-                <button
-                  onClick={() => setModalService(s)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-dynamic-bronze/10 border border-dynamic-bronze/40 text-dynamic-bronze font-semibold hover:bg-dynamic-bronze/20 hover:border-dynamic-bronze/60 transition-all duration-300 group/btn"
-                  aria-controls={`modal-${s.id}`}
-                >
-                  Learn More
-                  <FiArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                </button>
-
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-elegant-navy/0 to-dynamic-bronze/0 group-hover:from-elegant-navy/5 group-hover:to-dynamic-bronze/5 transition-all duration-500 pointer-events-none" />
-              </li>
+              <ServiceCard key={s.id} service={s} idx={idx} onModalOpen={setModalService} />
             ))}
           </ul>
-        </FadeInSection>
+        </div>
 
         {/* Modal */}
         {modalService && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             {/* Backdrop */}
             <div
-              className="fixed inset-0 bg-elegant-navy/40 backdrop-blur-sm"
+              className="fixed inset-0 bg-neutral-dark-text/40 backdrop-blur-sm"
               onClick={() => setModalService(null)}
               aria-hidden="true"
             />
@@ -213,13 +151,13 @@ function ServicesComponent() {
               id={`modal-${modalService.id}`}
               className="relative z-50 max-w-2xl w-full animate-slideUp"
             >
-              <div className="bg-elegant-porcelain rounded-2xl p-8 border border-elegant-navy/30 shadow-elegant-xl">
+              <div className="bg-white rounded-2xl p-8 border border-blue-primary/30 shadow-elegant-xl">
                 {/* Close Button */}
                 <button
                   ref={closeBtnRef}
                   onClick={() => setModalService(null)}
                   aria-label="Close dialog"
-                  className="absolute top-6 right-6 p-2 rounded-lg bg-elegant-navy/5 text-elegant-navy hover:text-dynamic-bronze hover:bg-elegant-navy/10 transition-all"
+                  className="absolute top-6 right-6 p-2 rounded-lg bg-blue-primary/5 text-blue-primary hover:text-blue-secondary hover:bg-blue-primary/10 transition-all"
                 >
                   <FiX className="w-5 h-5" />
                 </button>
@@ -228,24 +166,24 @@ function ServicesComponent() {
                 <div>
                   <h3
                     id={`modal-${modalService.id}-title`}
-                    className="text-2xl font-bold text-elegant-navy mb-4"
+                    className="text-2xl font-bold text-neutral-dark-text mb-4"
                   >
                     {modalService.title}
                   </h3>
-                  <p className="text-elegant-navy leading-relaxed mb-6">
+                  <p className="text-neutral-text-gray leading-relaxed mb-6">
                     {modalService.full}
                   </p>
 
                   {modalService.examples && (
                     <div className="mb-8">
-                      <h4 className="text-sm font-semibold text-elegant-navy mb-3">
+                      <h4 className="text-sm font-semibold text-neutral-dark-text mb-3">
                         Example Use Cases
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {modalService.examples.map((ex) => (
                           <div
                             key={ex}
-                            className="bg-elegant-navy/5 rounded-lg p-3 text-sm text-elegant-navy border border-elegant-navy/30"
+                            className="bg-blue-primary/5 rounded-lg p-3 text-sm text-neutral-dark-text border border-blue-primary/30"
                           >
                             ✓ {ex}
                           </div>
@@ -280,6 +218,62 @@ function ServicesComponent() {
         )}
       </div>
     </section>
+  )
+}
+
+// Separate component for each service card
+interface ServiceCardProps {
+  service: Service
+  idx: number
+  onModalOpen: (service: Service) => void
+}
+
+function ServiceCard({ service: s, idx, onModalOpen }: ServiceCardProps) {
+  const cardRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', {
+    threshold: 0.12,
+  })
+
+  return (
+    <li
+      ref={cardRef as React.RefObject<HTMLLIElement>}
+      className={`elegant-card group relative overflow-hidden transform transition-all duration-500 will-change-transform opacity-0 translate-y-8 ${
+        idx % 2 === 0 ? 'bg-white' : 'bg-neutral-off-white'
+      }`}
+      style={{ transitionDelay: `${idx * 50}ms` }}
+    >
+      {/* Icon container */}
+      <div className="flex items-start gap-4 mb-6">
+        <div className="flex-shrink-0">
+          <div className="w-14 h-14 rounded-xl bg-blue-secondary/10 flex items-center justify-center text-blue-secondary shadow-elegant-sm group-hover:shadow-elegant-md transition-shadow">
+            <s.Icon className="w-7 h-7" aria-hidden="true" />
+          </div>
+        </div>
+
+        <div className="flex-1">
+          <h3 className="text-lg font-bold text-neutral-dark-text group-hover:text-blue-secondary transition-colors">
+            {s.title}
+          </h3>
+        </div>
+      </div>
+
+      {/* Description */}
+      <p className="text-sm text-neutral-text-gray leading-relaxed mb-6">
+        {s.short}
+      </p>
+
+      {/* Learn More Button */}
+      <button
+        onClick={() => onModalOpen(s)}
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-secondary/10 border border-blue-secondary/40 text-blue-secondary font-semibold hover:bg-blue-secondary/20 hover:border-blue-secondary/60 transition-all duration-300 group/btn"
+        aria-controls={`modal-${s.id}`}
+      >
+        Learn More
+        <FiArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+      </button>
+
+      {/* Gradient overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-primary/0 to-blue-secondary/0 group-hover:from-blue-primary/5 group-hover:to-blue-secondary/5 transition-all duration-500 pointer-events-none" />
+    </li>
   )
 }
 

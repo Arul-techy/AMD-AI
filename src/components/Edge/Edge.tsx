@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
+import { useScrollAnimation } from '../../hooks/useScrollAnimation'
 
 type EdgeItem = {
   id: string
@@ -78,51 +79,39 @@ const ITEMS: EdgeItem[] = [
 ]
 
 function EdgeComponent(): JSX.Element {
-  const ref = useRef<HTMLElement | null>(null)
-  const [visible, setVisible] = useState<Record<string, boolean>>({})
+  const headerRef = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const id = (entry.target as HTMLElement).dataset.id
-          if (id && entry.isIntersecting) setVisible((v) => ({ ...v, [id]: true }))
-        })
-      },
-      { threshold: 0.12 }
+  function EdgeItem({ it }: { it: EdgeItem }) {
+    const ref = useScrollAnimation('opacity-100 translate-y-0', 'opacity-0 translate-y-8', { threshold: 0.1 })
+    return (
+      <li
+        ref={ref}
+        key={it.id}
+        data-id={it.id}
+        className={`flex-shrink-0 min-w-[220px] md:min-w-0 flex flex-col items-center text-center bg-transparent rounded-lg p-4 md:p-6 transition-all duration-600 opacity-0 translate-y-4`}
+        style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.1)' }}
+      >
+        <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center text-white mb-3 transform transition-transform duration-300 hover:scale-105 shadow-sm">
+          {it.Icon}
+        </div>
+        <h4 className="text-sm font-semibold text-white">{it.title}</h4>
+        <p className="mt-1 text-xs text-white/80">{it.text}</p>
+      </li>
     )
-    const items = el.querySelectorAll('[data-id]')
-    items.forEach((i) => obs.observe(i))
-    return () => obs.disconnect()
-  }, [])
+  }
 
   return (
-    <section id="edge" ref={ref} className="py-8" style={{ backgroundColor: '#2C2F44' }}>
+    <section id="edge" className="py-8" style={{ backgroundColor: '#1E3A8A' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-elegant-porcelain">Our Edge for MNCs &amp; Enterprise Clients</h2>
-          <p className="mt-2 text-elegant-porcelain/80">Trusted operational excellence designed for scale, speed, and security.</p>
+        <div className="text-center mb-6" ref={headerRef}>
+          <h2 className="h2-style text-2xl md:text-3xl text-white">Our Edge for MNCs & Enterprise Clients</h2>
+          <p className="text-body-sm mt-2 text-white/80">Trusted operational excellence designed for scale, speed, and security.</p>
         </div>
 
         <div className="h-scroll-x -mx-2 px-2 md:mx-0 md:px-0">
           <ul className="flex md:grid md:grid-cols-6 gap-4 md:gap-6 items-start whitespace-normal">
-            {ITEMS.map((it, idx) => (
-              <li
-                key={it.id}
-                data-id={it.id}
-                className={`flex-shrink-0 min-w-[220px] md:min-w-0 flex flex-col items-center text-center bg-transparent rounded-lg p-4 md:p-6 transition-all duration-300 ${
-                  visible[it.id] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
-                style={{ borderLeft: '1px solid rgba(234,231,226,0.1)' }}
-              >
-                <div className="w-20 h-20 rounded-full bg-elegant-porcelain flex items-center justify-center text-elegant-navy mb-3 transform transition-transform duration-300 hover:scale-105 shadow-sm">
-                  {it.Icon}
-                </div>
-                <h4 className="text-sm font-semibold text-elegant-porcelain">{it.title}</h4>
-                <p className="mt-1 text-xs text-elegant-porcelain/80">{it.text}</p>
-              </li>
+            {ITEMS.map((it) => (
+              <EdgeItem key={it.id} it={it} />
             ))}
           </ul>
         </div>

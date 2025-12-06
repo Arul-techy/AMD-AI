@@ -1,39 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* ELEGANT & PEACEFUL PALETTE */
-  --elegant-navy: #2C2F44;           /* Deep Navy - Primary text */
-  --elegant-teal: #A4B5B9;           /* Dusty Teal - Accents */
-  --elegant-lavender: #D0D2DE;       /* Soft Lavender Gray - Highlights */
-  --elegant-porcelain: #EAE7E2;      /* Warm Porcelain - Light background */
+  /* TECH & CORPORATE FONT SYSTEM */
+  
+  /* Font Families */
+  --font-heading: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+  
+  /* Font Weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  
+  /* Line Heights */
+  --lh-tight: 1.1;
+  --lh-snug: 1.2;
+  --lh-normal: 1.3;
+  --lh-relaxed: 1.5;
+  --lh-loose: 1.6;
+  --lh-generous: 1.7;
+  --lh-spacious: 1.8;
+  
+  /* Letter Spacing */
+  --ls-tight: -0.03em;
+  --ls-tighter: -0.02em;
+  --ls-normal: 0;
+  --ls-wide: 0.01em;
+  --ls-wider: 0.02em;
+  --ls-widest: 0.05em;
+  /* TRUST & RELIABILITY BLUE PALETTE */
+  
+  /* Primary Colors */
+  --color-blue-primary: #1E3A8A;     /* Deep Professional Blue */
+  --color-blue-secondary: #3B82F6;   /* Bright Blue */
+  --color-blue-accent: #60A5FA;      /* Light Blue */
+  --color-blue-dark: #1E40AF;        /* Rich Navy */
+  
+  /* Neutral Colors */
+  --color-white: #FFFFFF;            /* Pure White */
+  --color-off-white: #F8FAFC;        /* Off-White */
+  --color-light-gray: #F1F5F9;       /* Light Gray */
+  --color-medium-gray: #E2E8F0;      /* Medium Gray */
+  --color-text-gray: #64748B;        /* Secondary Text */
+  --color-dark-text: #0F172A;        /* Primary Text - Almost Black */
+  
+  /* Accent & Status Colors */
+  --color-success: #10B981;          /* Success Green */
+  --color-warning: #F59E0B;          /* Warning Amber */
+  --color-error: #EF4444;            /* Error Red */
+  --color-info: #06B6D4;             /* Info Cyan */
+  
+  /* Glass & Overlay Colors */
+  --color-glass-tint: rgba(59, 130, 246, 0.08);
+  --color-glass-border: rgba(59, 130, 246, 0.15);
+  --color-overlay-dark: rgba(15, 23, 42, 0.75);
+  --color-shadow: rgba(30, 58, 138, 0.12);
+  
+  /* Functional color mappings */
+  --primary-text: var(--color-dark-text);
+  --secondary-text: var(--color-text-gray);
+  --accent-color: var(--color-blue-secondary);
+  --primary-color: var(--color-blue-primary);
+  --light-bg: var(--color-white);
+  --dark-bg: var(--color-blue-primary);
 
-  /* DYNAMIC & CHIC PALETTE */
-  --dynamic-black: #000000;          /* Black - Dark text */
-  --dynamic-bronze: #9D683B;         /* Luxury Bronze - Primary accent */
-  --dynamic-sand: #DEC8B5;           /* Soft Sand - Medium tones */
-  --dynamic-warmgray: #EAE8E5;       /* Light Warm Gray - Disabled state */
+  /* Glass effects - Blue system */
+  --glass-light: rgba(255, 255, 255, 0.95);
+  --glass-medium: rgba(255, 255, 255, 0.85);
+  --glass-dark: rgba(255, 255, 255, 0.75);
+  --glass-subtle: rgba(255, 255, 255, 0.5);
+  --glass-overlay: rgba(15, 23, 42, 0.1);
 
-  /* ELEVATED & TIMELESS PALETTE */
-  --elevated-forest: #2C3729;        /* Deep Forest Green - Dark backgrounds */
-  --elevated-gold: #CBB57B;          /* Gold Beige - Highlights */
-  --elevated-sage: #C3C9C0;          /* Cool Sage - Secondary text */
-  --elevated-blush: #E5DAD6;         /* Blush Neutrals - Card backgrounds */
-
-  /* Functional colors */
-  --primary-text: var(--elegant-navy);
-  --secondary-text: var(--elevated-sage);
-  --accent-color: var(--dynamic-bronze);
-  --light-bg: var(--elegant-porcelain);
-  --dark-bg: var(--elegant-navy);
-
-  /* Glass effects */
-  --glass-light: rgba(234, 231, 226, 0.95);
-  --glass-medium: rgba(234, 231, 226, 0.85);
-  --glass-dark: rgba(234, 231, 226, 0.75);
-  --glass-subtle: rgba(234, 231, 226, 0.5);
-  --glass-overlay: rgba(44, 47, 68, 0.1);
+  /* Glass borders */
+  --border-glass: rgba(59, 130, 246, 0.15);
+  --border-glass-light: rgba(226, 232, 240, 0.5);
 
   /* Blur depths */
   --blur-xs: 2px;
@@ -43,24 +90,31 @@
   --blur-xl: 16px;
   --blur-2xl: 20px;
 
-  /* Shadow depths - using navy/bronze */
-  --shadow-elegant-sm: 0 2px 8px rgba(44, 47, 68, 0.08);
-  --shadow-elegant-md: 0 4px 16px rgba(44, 47, 68, 0.12);
-  --shadow-elegant-lg: 0 8px 24px rgba(44, 47, 68, 0.15);
-  --shadow-elegant-xl: 0 16px 40px rgba(44, 47, 68, 0.2);
-  --shadow-dynamic-sm: 0 2px 8px rgba(157, 104, 59, 0.1);
-  --shadow-dynamic-md: 0 4px 16px rgba(157, 104, 59, 0.15);
-  --shadow-dynamic-lg: 0 8px 24px rgba(157, 104, 59, 0.2);
+  /* Shadow depths - Blue-based */
+  --shadow-elevation-1: 0 2px 4px rgba(30, 58, 138, 0.06);
+  --shadow-elevation-2: 0 4px 12px rgba(30, 58, 138, 0.1);
+  --shadow-elevation-3: 0 8px 24px rgba(30, 58, 138, 0.12);
+  --shadow-elevation-4: 0 12px 40px rgba(30, 58, 138, 0.15);
+  --shadow-elevation-5: 0 20px 60px rgba(30, 58, 138, 0.2);
+  
+  /* Legacy shadow mappings */
+  --shadow-elegant-sm: 0 2px 8px rgba(30, 58, 138, 0.08);
+  --shadow-elegant-md: 0 4px 16px rgba(30, 58, 138, 0.12);
+  --shadow-elegant-lg: 0 8px 24px rgba(30, 58, 138, 0.15);
+  --shadow-elegant-xl: 0 16px 40px rgba(30, 58, 138, 0.2);
+  --shadow-dynamic-sm: 0 2px 8px rgba(30, 58, 138, 0.1);
+  --shadow-dynamic-md: 0 4px 16px rgba(30, 58, 138, 0.15);
+  --shadow-dynamic-lg: 0 8px 24px rgba(30, 58, 138, 0.2);
 
   /* Glass shadow depths */
-  --shadow-glass: 0 8px 32px rgba(44, 47, 68, 0.08);
-  --shadow-glass-lg: 0 20px 60px rgba(44, 47, 68, 0.12);
-  --shadow-glass-sm: 0 4px 15px rgba(44, 47, 68, 0.06);
+  --shadow-glass: 0 8px 32px rgba(30, 58, 138, 0.08);
+  --shadow-glass-lg: 0 20px 60px rgba(30, 58, 138, 0.2);
+  --shadow-glass-sm: 0 4px 15px rgba(30, 58, 138, 0.06);
 
   /* Border colors */
-  --border-elegant: rgba(44, 47, 68, 0.2);
-  --border-light: rgba(208, 210, 222, 0.4);
-  --border-accent: rgba(157, 104, 59, 0.3);
+  --border-elegant: rgba(30, 58, 138, 0.2);
+  --border-light: rgba(226, 232, 240, 0.5);
+  --border-accent: rgba(59, 130, 246, 0.3);
 }
 
 * {
@@ -74,35 +128,65 @@ html {
 }
 
 body {
-  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.6;
-  color: var(--primary-text);
-  background-color: var(--light-bg);
+  font-family: var(--font-body);
+  line-height: var(--lh-loose);
+  color: var(--color-dark-text);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Prevent horizontal scroll caused by oversized elements */
-body {
-  overflow-x: hidden;
-}
-
-/* Small utility for inner scrollable containers (Edge cards) */
-.h-scroll-x {
-  -webkit-overflow-scrolling: touch;
-  overflow-x: auto;
+/* Heading Base Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: var(--lh-snug);
+  color: var(--color-dark-text);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3.75rem;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--ls-tight);
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tighter);
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
 }
 
 button {
+  font-family: var(--font-body);
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+  font-weight: var(--fw-semibold);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -305,146 +389,87 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== LUXE PREMIUM PALETTE UTILITIES ===== */
+/* ==================== LUXURY UTILITY CLASSES (Elegant / Dynamic / Elevated) ==================== */
 
-/* LUXE Button - Primary (Wine background) */
+/* Primary button - updated to Trust & Reliability Blue */
+.elegant-btn-primary,
 .luxe-btn-primary {
-  background-color: var(--luxe-wine);
-  color: var(--luxe-porcelain);
-  border: 1px solid var(--luxe-taupe);
-  border-radius: 8px;
+  background-color: var(--color-blue-secondary);
+  color: var(--color-white);
+  border: 1px solid rgba(44,47,68,0.06);
+  border-radius: 10px;
   padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-luxe-md);
+  font-weight: 700;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+  box-shadow: var(--shadow-dynamic-md);
 }
 
+.elegant-btn-primary:hover,
 .luxe-btn-primary:hover {
-  background-color: var(--luxe-espresso);
-  box-shadow: var(--shadow-luxe-lg);
+  background-color: var(--color-blue-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-dynamic-lg);
   transform: translateY(-2px);
 }
 
-.luxe-btn-primary:active {
-  transform: translateY(0);
-}
+.elegant-btn-primary:active,
+.luxe-btn-primary:active { transform: translateY(0); }
 
-/* LUXE Button - Secondary (Taupe background) */
+/* Secondary button - light porcelain style */
+.elegant-btn-secondary,
 .luxe-btn-secondary {
-  background-color: var(--luxe-taupe);
-  color: var(--luxe-espresso);
-  border: 1px solid var(--luxe-taupe);
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
+  background-color: var(--color-off-white);
+  color: var(--color-blue-primary);
+  border: 1px solid var(--border-elegant);
+  border-radius: 10px;
+  padding: 0.72rem 1.4rem;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-luxe-md);
+  transition: all 0.22s ease;
 }
 
+.elegant-btn-secondary:hover,
 .luxe-btn-secondary:hover {
-  background-color: var(--luxe-wine);
-  color: var(--luxe-porcelain);
-  box-shadow: var(--shadow-luxe-lg);
+  background-color: rgba(14,165,233,0.06);
+  color: var(--color-blue-primary);
+  box-shadow: var(--shadow-elegant-sm);
   transform: translateY(-2px);
 }
 
-/* LUXE Card */
+/* Card styles */
+.elegant-card,
 .luxe-card {
-  background-color: var(--luxe-porcelain);
-  border: 1px solid var(--border-luxe-light);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: var(--shadow-luxe-sm);
-  transition: all 0.4s cubic-bezier(0.22, 0.9, 0.3, 1);
+  background-color: var(--color-off-white);
+  border: 1px solid var(--border-elegant);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-elegant-sm);
+  transition: transform 0.28s cubic-bezier(.22,.9,.3,1), box-shadow 0.28s;
 }
 
+.elegant-card:hover,
 .luxe-card:hover {
-  box-shadow: var(--shadow-luxe-lg);
-  transform: translateY(-4px);
-  background: linear-gradient(135deg, var(--luxe-porcelain), var(--luxe-beige));
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elegant-lg);
 }
 
-/* LUXE Section - Alternating backgrounds */
-.luxe-section-light {
-  background-color: var(--luxe-porcelain);
-}
+/* Small helpers for text & accents */
+.elegant-text-primary { color: var(--color-blue-primary); }
+.elegant-text-muted { color: var(--secondary-text); }
+.accent-bronze { color: var(--color-blue-secondary); }
+.bg-accent-bronze { background-color: var(--color-blue-secondary); }
 
-.luxe-section-mid {
-  background-color: var(--luxe-mist);
-}
+/* Utility aliases for backward compatibility (maps legacy luxe-* classes to new palette) */
+.luxe-section-light { background-color: var(--color-off-white); }
+.luxe-section-mid { background-color: var(--color-light-gray); }
+.luxe-section-accent { background-color: var(--color-medium-gray); }
 
-.luxe-section-accent {
-  background-color: var(--luxe-beige);
-}
+/* ==================== SCROLL ANIMATION UTILITIES ==================== */
 
-/* LUXE Text Colors */
-.luxe-text-primary {
-  color: var(--luxe-espresso);
-}
-
-.luxe-text-secondary {
-  color: var(--luxe-taupe);
-}
-
-.luxe-text-muted {
-  color: var(--luxe-wine);
-  opacity: 0.7;
-}
-
-.luxe-text-light {
-  color: var(--luxe-porcelain);
-}
-
-/* LUXE Border Colors */
-.luxe-border {
-  border-color: var(--border-luxe);
-}
-
-.luxe-border-taupe {
-  border-color: var(--luxe-taupe);
-}
-
-.luxe-border-wine {
-  border-color: var(--luxe-wine);
-}
-
-/* LUXE Gradient Backgrounds */
-.luxe-gradient-warm {
-  background: linear-gradient(135deg, var(--luxe-porcelain), var(--luxe-beige), var(--luxe-taupe));
-}
-
-.luxe-gradient-dark {
-  background: linear-gradient(135deg, var(--luxe-espresso), var(--luxe-wine));
-}
-
-.luxe-gradient-accent {
-  background: linear-gradient(135deg, var(--luxe-wine), var(--luxe-taupe));
-}
-
-/* LUXE Hover overlay */
-.luxe-hover-overlay:hover {
-  background: linear-gradient(135deg, rgba(172, 156, 141, 0.1), rgba(114, 56, 61, 0.1));
-}
-
-/* LUXE Animations - smooth color transitions */
-@keyframes luxeShadowPulse {
-  0%, 100% {
-    box-shadow: var(--shadow-luxe-md);
-  }
-  50% {
-    box-shadow: var(--shadow-luxe-wine);
-  }
-}
-
-.luxe-shadow-pulse {
-  animation: luxeShadowPulse 2s ease-in-out infinite;
-}
-
-/* Transform animations */
-@keyframes luxeSlideUp {
+/* Smooth scroll animations that replay on every scroll */
+@keyframes scrollFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -452,8 +477,435 @@ button {
   }
 }
 
-.luxe-slide-up {
-  animation: luxeSlideUp 0.6s ease-out;
+@keyframes scrollSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
+@keyframes scrollSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
+@keyframes scrollSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation duration and easing */
+.scroll-animate {
+  transition: opacity 0.6s cubic-bezier(0.22, 0.9, 0.3, 1),
+              transform 0.6s cubic-bezier(0.22, 0.9, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-animate-fast {
+  transition: opacity 0.4s cubic-bezier(0.22, 0.9, 0.3, 1),
+              transform 0.4s cubic-bezier(0.22, 0.9, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Helper classes for animation control */
+.animation-enter {
+  animation: scrollFadeIn 0.6s cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+}
+
+.animation-leave {
+  animation: none;
+}
+
+/* Ensure GPU acceleration */
+.scroll-animate,
+.animation-enter {
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* End scroll animation utilities */
+
+/* ==================== ADDITIONAL FONT UTILITIES FOR QUICK APPLICATION ==================== */
+
+/* Section Title Quick Classes */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-snug);
+  color: var(--color-dark-text);
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-loose);
+  color: var(--color-text-gray);
+}
+
+/* Card Title & Body Quick Classes */
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-normal);
+  color: var(--color-dark-text);
+}
+
+.card-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-loose);
+  color: var(--color-text-gray);
+}
+
+/* Label Quick Class */
+.label-primary {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--color-blue-primary);
+}
+
+/* Badge Quick Class */
+.badge-primary {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--color-white);
+}
+
+/* Button Quick Classes */
+.btn-text {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-snug);
+}
+
+.btn-text-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-snug);
+}
+
+.btn-text-sm {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-snug);
+}
+
+/* Heading Quick Apply Classes */
+.h1-style {
+  font-family: var(--font-heading);
+  font-size: 3.75rem;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+}
+
+.h2-style {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-snug);
+}
+
+.h3-style {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-snug);
+}
+
+.h4-style {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-normal);
+}
+
+/* Body Text Quick Classes */
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-loose);
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-loose);
+}
+
+.text-body-sm {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-relaxed);
+}
+
+.text-body-xs {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-relaxed);
+}
+
+/* Tracking utilities */
+.tracking-tighter { letter-spacing: var(--ls-tighter); }
+.tracking-tight { letter-spacing: var(--ls-tight); }
+.tracking-normal { letter-spacing: var(--ls-normal); }
+.tracking-wide { letter-spacing: var(--ls-wide); }
+.tracking-wider { letter-spacing: var(--ls-wider); }
+.tracking-widest { letter-spacing: var(--ls-widest); }
+
+/* ==================== TYPOGRAPHY UTILITIES ==================== */
+
+/* Heading Styles */
+.type-h1 {
+  font-family: var(--font-heading);
+  font-size: 3.75rem;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+}
+
+.type-h2 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-snug);
+}
+
+.type-h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-snug);
+}
+
+.type-h4 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-normal);
+}
+
+.type-h5 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-normal);
+}
+
+.type-h6 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-normal);
+}
+
+/* Body Text Styles */
+.type-body-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-loose);
+}
+
+.type-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-loose);
+}
+
+.type-body-sm {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-relaxed);
+}
+
+.type-body-xs {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-relaxed);
+}
+
+/* Button Text Styles */
+.type-button-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-snug);
+}
+
+.type-button {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wide);
+  line-height: var(--lh-snug);
+}
+
+.type-button-sm {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-snug);
+}
+
+/* Label & UI Styles */
+.type-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-normal);
+  text-transform: capitalize;
+}
+
+.type-label-sm {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-widest);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.type-badge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Code/Monospace Styles */
+.type-code {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-relaxed);
+}
+
+.type-code-sm {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-relaxed);
+}
+
+/* Lead Text */
+.type-lead {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-loose);
+  color: var(--color-text-gray);
+}
+
+/* Stat Numbers */
+.type-stat-xl {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--ls-tight);
+  line-height: 1;
+}
+
+.type-stat-lg {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tighter);
+  line-height: 1;
+}
+
+/* Article/Blog Styles */
+.type-article-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--ls-tighter);
+  line-height: var(--lh-snug);
+}
+
+.type-article-body {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-normal);
+  line-height: var(--lh-spacious);
+}
+
+/* Prevent horizontal scroll caused by oversized elements */
+body {
+  overflow-x: hidden;
+}
+
+/* Small utility for inner scrollable containers (Edge cards) */
+.h-scroll-x {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+}

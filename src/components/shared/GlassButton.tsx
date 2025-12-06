@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 interface GlassButtonProps {
   children: ReactNode
@@ -43,7 +43,9 @@ export default function GlassButton({
         ${sizeClasses[size]}
         ${variantClasses[variant]}
         rounded-xl
+        font-body
         font-semibold
+        tracking-wide
         transition-all
         duration-300
         ease-out

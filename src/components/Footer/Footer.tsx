@@ -22,14 +22,14 @@ export default function Footer() {
     return () => obs.disconnect()
   }, [])
 
-  const linkClass = 'text-luxe-porcelain hover:text-luxe-beige transition-colors duration-300'
-  const iconWrap = 'inline-flex items-center justify-center w-10 h-10 rounded-full bg-luxe-taupe/20 hover:scale-105 transform transition duration-300'
+  const linkClass = 'font-body text-white/90 hover:text-blue-secondary hover:font-medium transition-colors duration-300'
+  const iconWrap = 'inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:scale-105 transform transition duration-300'
 
   return (
     <footer
       ref={ref}
       aria-labelledby="footer-heading"
-      className={`bg-luxe-espresso text-luxe-porcelain py-20 px-6 sm:px-8 md:px-12 transition-all duration-700 ease-out ${
+      className={`bg-blue-primary text-white py-20 px-6 sm:px-8 md:px-12 transition-all duration-700 ease-out ${
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
       }`}
     >
@@ -38,14 +38,14 @@ export default function Footer() {
 
           {/* Company Info Block */}
           <div className="flex">
-            <div className="mr-4">
-              <div className="w-1 h-14 bg-luxe-wine rounded" aria-hidden="true" />
+              <div className="mr-4">
+              <div className="w-1 h-14 bg-blue-secondary rounded" aria-hidden="true" />
             </div>
             <div>
-              <h3 id="footer-heading" className="text-2xl font-bold mb-3">
+              <h3 id="footer-heading" className="font-heading text-2xl font-bold mb-3 tracking-tighter">
                 AMD.AI
               </h3>
-              <p className="text-sm max-w-xs leading-relaxed text-luxe-taupe">
+              <p className="font-body text-sm max-w-xs leading-relaxed text-white/80 font-regular">
                 A modern language-tech and media service provider delivering fast, scalable, and AI-powered solutions globally.
               </p>
             </div>
@@ -53,7 +53,7 @@ export default function Footer() {
 
           {/* Quick Navigation */}
           <nav aria-label="Quick navigation" className="pt-1">
-            <h4 className="text-lg font-bold mb-4">Quick Navigation</h4>
+            <h4 className="font-heading text-lg font-bold mb-4 tracking-tight">Quick Navigation</h4>
             <ul className="space-y-3">
               <li>
                 <a className={linkClass} href="#home">Home</a>
@@ -75,14 +75,14 @@ export default function Footer() {
 
           {/* Contact & Social Links */}
           <div className="">
-            <h4 className="text-lg font-bold mb-4">Contact</h4>
+            <h4 className="font-heading text-lg font-bold mb-4 tracking-tight">Contact</h4>
 
             <ul className="space-y-4 text-sm">
               <li>
-                <a className="inline-flex items-center gap-3 text-luxe-porcelain hover:text-luxe-beige transition-colors duration-300" href="mailto:amdtranslation2@gmail.com" aria-label="Email AMD.AI">
+                <a className="inline-flex items-center gap-3 text-white/90 hover:text-blue-secondary transition-colors duration-300" href="mailto:amdtranslation2@gmail.com" aria-label="Email AMD.AI">
                   <span className={iconWrap} aria-hidden="true">
                     {/* Mail SVG */}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-luxe-porcelain">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
                       <path d="M3 6.5C3 5.67157 3.67157 5 4.5 5H19.5C20.3284 5 21 5.67157 21 6.5V17.5C21 18.3284 20.3284 19 19.5 19H4.5C3.67157 19 3 18.3284 3 17.5V6.5Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M21 6.5L12 12.5L3 6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -92,7 +92,7 @@ export default function Footer() {
               </li>
 
               <li>
-                <a className="inline-flex items-center gap-3 text-luxe-porcelain hover:text-luxe-beige transition-colors duration-300" href="tel:7010413806" aria-label="Call AMD.AI">
+                <a className="inline-flex items-center gap-3 text-white/90 hover:text-blue-secondary transition-colors duration-300" href="tel:7010413806" aria-label="Call AMD.AI">
                   <span className={iconWrap} aria-hidden="true">
                     {/* Phone SVG */}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,7 +104,7 @@ export default function Footer() {
               </li>
 
               <li>
-                <a className="inline-flex items-center gap-3 text-luxe-porcelain hover:text-luxe-beige transition-colors duration-300" href="https://linkedin.com/company/amdtranslation" target="_blank" rel="noopener noreferrer" aria-label="AMD.AI on LinkedIn">
+                <a className="inline-flex items-center gap-3 text-white/90 hover:text-blue-secondary transition-colors duration-300" href="https://linkedin.com/company/amdtranslation" target="_blank" rel="noopener noreferrer" aria-label="AMD.AI on LinkedIn">
                   <span className={iconWrap} aria-hidden="true">
                     {/* LinkedIn SVG */}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,9 +121,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12">
-          <div className="bg-luxe-beige py-4 px-6 rounded-sm text-center">
-            <p className="text-sm text-luxe-espresso font-semibold">© 2025 AMD.AI — All Rights Reserved.</p>
+          <div className="mt-12">
+          <div className="bg-white/5 py-4 px-6 rounded-sm text-center">
+            <p className="text-sm text-white font-semibold">© 2025 AMD.AI — All Rights Reserved.</p>
           </div>
         </div>
       </div>

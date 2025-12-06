@@ -6,47 +6,84 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        // TECH & CORPORATE FONT SYSTEM
+        heading: ['Sora', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        mono: ['Fira Code', 'Courier New', 'monospace'],
+      },
+      fontSize: {
+        // Custom font sizes for typography system
+        'h1-desktop': ['3.75rem', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '800' }],
+        'h1-tablet': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '800' }],
+        'h1-mobile': ['2.25rem', { lineHeight: '1.1', letterSpacing: '-0.03em', fontWeight: '800' }],
+        'h2-desktop': ['3rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h2-tablet': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h2-mobile': ['2rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h3-desktop': ['2rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'h3-tablet': ['1.75rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'h3-mobile': ['1.5rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.6', fontWeight: '400' }],
+        'body-base': ['1rem', { lineHeight: '1.6', fontWeight: '400' }],
+        'body-sm': ['0.9375rem', { lineHeight: '1.5', fontWeight: '400' }],
+        'button': ['1rem', { lineHeight: '1.2', fontWeight: '600', letterSpacing: '0.01em' }],
+      },
+      letterSpacing: {
+        tightest: '-0.04em',
+        tight: '-0.03em',
+        tighter: '-0.02em',
+        tight: '-0.01em',
+        normal: '0',
+        wide: '0.01em',
+        wider: '0.02em',
+        widest: '0.05em',
+      },
       colors: {
-        // ELEGANT & PEACEFUL PALETTE
-        elegant: {
-          navy: '#2C2F44',           // Deep Navy
-          teal: '#A4B5B9',           // Dusty Teal
-          lavender: '#D0D2DE',       // Soft Lavender Gray
-          porcelain: '#EAE7E2',      // Warm Porcelain
-        },
-        // DYNAMIC & CHIC PALETTE
-        dynamic: {
-          black: '#000000',          // Black
-          bronze: '#9D683B',         // Luxury Bronze
-          sand: '#DEC8B5',           // Soft Sand
-          warmgray: '#EAE8E5',       // Light Warm Gray
-        },
-        // ELEVATED & TIMELESS PALETTE
-        elevated: {
-          forest: '#2C3729',         // Deep Forest Green
-          gold: '#CBB57B',           // Gold Beige
-          sage: '#C3C9C0',           // Cool Sage
-          blush: '#E5DAD6',          // Blush Neutrals
-        },
-        // Legacy colors (for backwards compatibility)
+        // TRUST & RELIABILITY BLUE PALETTE
         primary: {
           50: '#f0f9ff',
           100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
           500: '#0ea5e9',
           600: '#0284c7',
           700: '#0369a1',
+          800: '#075985',
           900: '#0c2d6b',
         },
-        secondary: {
-          50: '#f8fafc',
-          500: '#64748b',
-          700: '#334155',
-          900: '#0f172a',
+        // Core Blues
+        'blue-primary': '#1E3A8A',    // Deep Professional Blue
+        'blue-secondary': '#3B82F6', // Bright Blue
+        'blue-accent': '#60A5FA',    // Light Blue
+        'blue-dark': '#1E40AF',      // Rich Navy
+        
+        // Neutrals
+        'neutral-white': '#FFFFFF',
+        'neutral-off-white': '#F8FAFC',
+        'neutral-light-gray': '#F1F5F9',
+        'neutral-medium-gray': '#E2E8F0',
+        'neutral-text-gray': '#64748B',
+        'neutral-dark-text': '#0F172A',
+        
+        // Status Colors
+        'success': '#10B981',
+        'warning': '#F59E0B',
+        'error': '#EF4444',
+        'info': '#06B6D4',
+        
+        // Legacy aliases for backwards compatibility
+        elegant: {
+          navy: '#1E3A8A',
+          teal: '#60A5FA',
+          lavender: '#E0E7FF',
+          porcelain: '#FFFFFF',
         },
-        accent: {
-          400: '#f97316',
-          500: '#f59e0b',
-          600: '#d97706',
+        dynamic: {
+          black: '#0F172A',
+          bronze: '#3B82F6',
+          sand: '#F8FAFC',
+          warmgray: '#E2E8F0',
         },
       },
       fontFamily: {
@@ -67,24 +104,26 @@ export default {
         '3xl': '40px',
       },
       boxShadow: {
-        // Elegant shadows (navy + bronze)
-        'elegant-sm': '0 2px 8px rgba(44, 47, 68, 0.08)',
-        'elegant-md': '0 4px 16px rgba(44, 47, 68, 0.12)',
-        'elegant-lg': '0 8px 24px rgba(44, 47, 68, 0.15)',
-        'elegant-xl': '0 16px 40px rgba(44, 47, 68, 0.2)',
-        // Dynamic shadows (bronze accents)
-        'dynamic-sm': '0 2px 8px rgba(157, 104, 59, 0.1)',
-        'dynamic-md': '0 4px 16px rgba(157, 104, 59, 0.15)',
-        'dynamic-lg': '0 8px 24px rgba(157, 104, 59, 0.2)',
-        // Glass effects (soft shadows)
-        glass: '0 8px 32px rgba(44, 47, 68, 0.08)',
-        'glass-lg': '0 20px 60px rgba(44, 47, 68, 0.12)',
-        'glass-sm': '0 4px 15px rgba(44, 47, 68, 0.06)',
-        'glass-xl': '0 30px 80px rgba(44, 47, 68, 0.15)',
+        // Elevation system (Blue-based shadows)
+        'elevation-1': '0 2px 4px rgba(30, 58, 138, 0.06)',
+        'elevation-2': '0 4px 12px rgba(30, 58, 138, 0.1)',
+        'elevation-3': '0 8px 24px rgba(30, 58, 138, 0.12)',
+        'elevation-4': '0 12px 40px rgba(30, 58, 138, 0.15)',
+        'elevation-5': '0 20px 60px rgba(30, 58, 138, 0.2)',
+        // Elegant shadows (legacy - mapped to blue)
+        'elegant-sm': '0 2px 8px rgba(30, 58, 138, 0.08)',
+        'elegant-md': '0 4px 16px rgba(30, 58, 138, 0.12)',
+        'elegant-lg': '0 8px 24px rgba(30, 58, 138, 0.15)',
+        'elegant-xl': '0 16px 40px rgba(30, 58, 138, 0.2)',
+        // Glass effects
+        glass: '0 8px 32px rgba(30, 58, 138, 0.08)',
+        'glass-lg': '0 20px 60px rgba(30, 58, 138, 0.2)',
+        'glass-sm': '0 4px 15px rgba(30, 58, 138, 0.06)',
+        'glass-xl': '0 30px 80px rgba(30, 58, 138, 0.3)',
       },
       borderColor: {
-        glass: 'rgba(44, 47, 68, 0.2)',
-        'glass-light': 'rgba(208, 210, 222, 0.4)',
+        glass: 'rgba(59, 130, 246, 0.15)',
+        'glass-light': 'rgba(226, 232, 240, 0.5)',
       },
       animation: {
         fadeIn: 'fadeIn 0.5s ease-in-out',
